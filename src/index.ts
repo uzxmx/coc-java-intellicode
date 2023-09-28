@@ -33,6 +33,7 @@ export async function activate(context: ExtensionContext): Promise<void> {
       let languageClient: LanguageClient = service.client!
       languageClient.onReady().then(() => {
         languageClient.registerFeature(new CompletionItemFeature(languageClient))
+      // @ts-ignore
         languageClient.sendRequest(ExecuteCommandRequest.type, {
           command: 'java.intellicode.enable',
           arguments: [true, path.join(context.extensionPath, 'server', 'model')]
